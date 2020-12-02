@@ -17,5 +17,5 @@ and [Shipyard](https://shipyard.build) out of the box.
 ## Getting Started
 
 - Run `make develop` at the root of this project.
-- Visit the app at http://localhost:3000.
+- Visit the app at http://localhost:8080.
 - Make your code changes! The app will reload whenever you save.
