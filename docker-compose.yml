@@ -11,6 +11,8 @@ services:
     volumes:
       - 'postgres:/var/lib/postgresql/data'
   django:
+    labels:
+      shipyard.route: '/'
     build: .
     volumes:
       - .:/code
