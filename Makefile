@@ -1,7 +1,6 @@
 VOLUME=$(shell basename $(PWD))
 
-develop: clean build run
-# develop: clean build migrations.all run
+develop: clean build migrations.all run
 
 clean:
 	docker-compose rm -vf
