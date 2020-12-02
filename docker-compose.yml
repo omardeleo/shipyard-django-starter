@@ -1,17 +1,20 @@
 version: "3.8"
    
 services:
-  db:
+  postgres:
     image: postgres
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-  web:
+  django:
     build: .
     volumes:
       - .:/code
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - postgres
+
+volumes:
+  postgres:
