@@ -2,7 +2,7 @@ FROM python:3.9.0-alpine
 
 WORKDIR /code
 
-# Install system dependencies for: uWSGI, poetry, watchman
+# Install system dependencies for poetry
 RUN apk add --update --no-cache \
   gcc \
   libc-dev \
