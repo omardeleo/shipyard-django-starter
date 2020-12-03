@@ -1,6 +1,7 @@
 from django.shortcuts import render
-
 from django.http import HttpResponse
+from django.template import loader
+
 from .models import Counter
 
 def index(request):
@@ -11,4 +12,8 @@ def index(request):
     else:
         counter = Counter()
         counter.save()
-    return HttpResponse(counter.value)
+    template = loader.get_template('counters/index.html')
+    context = {
+        'counter': counter.value
+    }
+    return HttpResponse(template.render(context, request))
