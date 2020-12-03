@@ -2,7 +2,7 @@ version: "3.8"
    
 services:
   postgres:
-    image: 'postgres:9.6-alpine'
+    image: 'postgres:9.6.20-alpine'
     restart: always
     volumes:
       - 'postgres:/var/lib/postgresql/data'
