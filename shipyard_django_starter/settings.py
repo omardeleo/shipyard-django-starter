@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import os
 from pathlib import Path
 # str(os.getenv('KEY')
 
@@ -78,10 +77,10 @@ WSGI_APPLICATION = 'shipyard_django_starter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': str(os.getenv('POSTGRES_DB')),
-        'USER': str(os.getenv('POSTGRES_USER')),
-        'PASSWORD': str(os.getenv('POSTGRES_PASSWORD')),
-        'HOST': str(os.getenv('POSTGRES_HOST')),
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'postgres',
         'PORT': 5432,
     }
 }
