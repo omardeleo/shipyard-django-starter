@@ -15,15 +15,11 @@ services:
       django_network:
     ports:
       - '5432'
+
   django:
     labels:
       shipyard.before: 'poetry run python manage.py migrate'
       shipyard.route: '/'
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_HOST=postgres
     build: .
     volumes:
       - .:/code
@@ -31,11 +27,6 @@ services:
       - "8080:8080"
     depends_on:
       - postgres
-    links:
-      - postgres
-    networks:
-      django_network:
-networks:
-  django_network:
+
 volumes:
   postgres:
