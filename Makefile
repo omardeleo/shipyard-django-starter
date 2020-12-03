@@ -22,16 +22,14 @@ python-shell:
 postgres.data.delete: clean
 	docker volume rm $(VOLUME)_postgres
 
-# fix this
-# postgres.start:
-# 	docker-compose up -d postgres
-# 	docker-compose exec postgres \
-# 	  sh -c 'while ! nc -z postgres 5432; do sleep 0.1; done'
-
-postgres-shell:
+postgres.start:
 	docker-compose up -d postgres
+	docker-compose exec postgres \
+	  sh -c 'while ! nc -z postgres 5432; do sleep 0.1; done'
+
+postgres-shell: postgres.start
 	docker exec -it $(VOLUME)_postgres_1 sh
 
-migrations.all:
+migrations.all: postgres.start
 	docker-compose run django \
 	  poetry run python manage.py migrate
