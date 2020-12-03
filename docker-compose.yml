@@ -3,14 +3,18 @@ version: "3.8"
 services:
   postgres:
     image: postgres
+    restart: always
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    volumes:
-      - 'postgres:/var/lib/postgresql/data'
+      - PGDATA=/var/lib/postgresql/data/pgdata
     networks:
       django_network:
+    ports:
+      - '5432'
   django:
     labels:
       shipyard.before: 'poetry run python manage.py migrate'
@@ -28,7 +32,7 @@ services:
     depends_on:
       - postgres
     links:
-      - postgres:postgres
+      - postgres
     networks:
       django_network:
 networks:
