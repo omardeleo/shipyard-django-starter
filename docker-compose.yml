@@ -3,7 +3,7 @@ version: '3.8'
 services:
   django:
     labels:
-      shipyard.before: 'poetry run python manage.py migrate'
+      shipyard.before: 'poetry run python src/manage.py migrate'
       shipyard.route: '/'
     build: .
     volumes:
