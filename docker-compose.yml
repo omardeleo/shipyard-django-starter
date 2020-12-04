@@ -1,6 +1,18 @@
 version: '3.8'
    
 services:
+  django:
+    labels:
+      shipyard.before: 'poetry run python manage.py migrate'
+      shipyard.route: '/'
+    build: .
+    volumes:
+      - './src:/srv/src:ro'
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+
   postgres:
     image: 'postgres:9.6.20-alpine'
     restart: always
@@ -13,18 +25,6 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata
     ports:
       - '5432'
-
-  django:
-    labels:
-      shipyard.before: 'poetry run python manage.py migrate'
-      shipyard.route: '/'
-    build: .
-    volumes:
-      - .:/srv
-    ports:
-      - '8080:8080'
-    depends_on:
-      - postgres
 
 volumes:
   postgres:

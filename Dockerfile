@@ -22,13 +22,13 @@ RUN apk add --update --no-cache \
 RUN pip install poetry
 
 # Install Python dependencies
-ADD pyproject.toml poetry.lock /srv/
+ADD pyproject.toml poetry.lock ./
 RUN poetry install
 
 # Add the project
 # NOTE Run the install again to install the project
-ADD . /srv/
+ADD src ./src
 RUN poetry install
 
 # Set the default command
-CMD ["poetry", "run", "python", "manage.py", "runserver", "0:8080"]
+CMD ["poetry", "run", "python", "src/manage.py", "runserver", "0:8080"]
