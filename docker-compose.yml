@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
    
 services:
   postgres:
@@ -22,7 +22,7 @@ services:
     volumes:
       - .:/code
     ports:
-      - "8080:8080"
+      - '8080:8080'
     depends_on:
       - postgres
 
