@@ -1,6 +1,6 @@
 FROM python:3.9.0-alpine
 
-WORKDIR /code
+WORKDIR /srv
 
 # Install system dependencies for poetry
 RUN apk add --update --no-cache \
@@ -22,12 +22,12 @@ RUN apk add --update --no-cache \
 RUN pip install poetry
 
 # Install Python dependencies
-ADD pyproject.toml poetry.lock /code/
+ADD pyproject.toml poetry.lock /srv/
 RUN poetry install
 
 # Add the project
 # NOTE Run the install again to install the project
-ADD . /code/
+ADD . /srv/
 RUN poetry install
 
 # Set the default command

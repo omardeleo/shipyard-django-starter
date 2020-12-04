@@ -20,7 +20,7 @@ services:
       shipyard.route: '/'
     build: .
     volumes:
-      - .:/code
+      - .:/srv
     ports:
       - '8080:8080'
     depends_on:
