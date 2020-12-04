@@ -17,7 +17,7 @@ shell:
 
 python-shell:
 	docker-compose run django \
-	  poetry run python manage.py shell
+	  poetry run python src/manage.py shell
 
 postgres.data.delete: clean
 	docker volume rm $(VOLUME)_postgres
@@ -32,4 +32,4 @@ postgres-shell: postgres.start
 
 migrations.all: postgres.start
 	docker-compose run django \
-	  poetry run python manage.py migrate
+	  poetry run python src/manage.py migrate
